@@ -1,0 +1,7 @@
+pandas
+openai
+jinja2
+python-dotenv
+pydantic-settings>=2.2
+tqdm
+tenacity

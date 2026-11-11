@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ subject | e }}</title>
+</head>
+<body style="margin:0; background-color:#f3f5f8; font-family:Arial,sans-serif; color:#172334;">
+  {% set unsubscribe_url = unsubscribe_url | default('') %}
+  {% set contact_url = contact_url | default('') %}
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+        <!--[if mso]><table role="presentation" width="600" align="center"><tr><td><![endif]-->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
+               style="max-width:600px; background-color:#fff; border:1px solid #dce3eb; border-radius:8px;">
+          <tr>
+            <td style="padding:24px; font-size:16px; line-height:1.55;">
+              {% if recipient_name %}<p style="margin:0 0 16px;">Здравствуйте, {{ recipient_name | e }}!</p>{% endif %}
+              {# Передавайте HTML, сформированный из экранированного текста. #}
+              {{ body_html | safe }}
+              <p style="margin:24px 0 0; padding-top:16px; border-top:1px solid #dce3eb;">
+                С уважением,<br>
+                <strong>{{ sender_name | e }}</strong>
+                {% if company_name %}<br>{{ company_name | e }}{% endif %}
+              </p>
+            </td>
+          </tr>
+          {% if unsubscribe_url or contact_url %}
+          <tr>
+            <td style="padding:0 24px 20px; font-size:13px; line-height:1.5;">
+              {% if unsubscribe_url %}<a href="{{ unsubscribe_url | e }}" style="color:#315777;">Отписаться</a>{% endif %}
+              {% if unsubscribe_url and contact_url %} &middot; {% endif %}
+              {% if contact_url %}<a href="{{ contact_url | e }}" style="color:#315777;">Контакты</a>{% endif %}
+            </td>
+          </tr>
+          {% endif %}
+        </table>
+        <!--[if mso]></td></tr></table><![endif]-->
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

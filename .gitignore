@@ -1,0 +1,10 @@
+.env
+.venv/
+venv/
+*.log
+mailer.log
+__pycache__/
+*.pyc
+data/sent_log.csv
+.idea/
+.vscode/
